@@ -1,0 +1,300 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* DiasporaConnect Premium Design System - Inspired by Wise & Revolut */
+  --background: 220 20% 97%;
+  --foreground: 220 25% 10%;
+  
+  --card: 0 0% 100%;
+  --card-foreground: 220 25% 10%;
+  
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 25% 10%;
+  
+  /* Primary: Deep navy for trust */
+  --primary: 220 60% 15%;
+  --primary-foreground: 0 0% 100%;
+  
+  /* Secondary: Vibrant green for success/money (Wise inspired) */
+  --secondary: 158 64% 52%;
+  --secondary-foreground: 220 60% 10%;
+  
+  /* Accent: Warm orange for CTAs */
+  --accent: 24 95% 53%;
+  --accent-foreground: 0 0% 100%;
+  
+  --muted: 220 14% 92%;
+  --muted-foreground: 220 10% 45%;
+  
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --success: 158 64% 42%;
+  --success-foreground: 0 0% 100%;
+  
+  --warning: 38 92% 50%;
+  --warning-foreground: 0 0% 100%;
+  
+  --border: 220 13% 90%;
+  --input: 220 14% 95%;
+  --ring: 24 95% 53%;
+  
+  --radius: 1.25rem;
+  
+  /* Surface layers for depth */
+  --surface: 220 20% 97%;
+  --surface-elevated: 0 0% 100%;
+  --surface-container: 220 14% 94%;
+  --surface-container-low: 220 16% 96%;
+  --surface-container-high: 220 12% 91%;
+  
+  /* Semantic colors */
+  --on-surface: 220 25% 10%;
+  --on-surface-variant: 220 10% 40%;
+  --outline: 220 8% 75%;
+  --outline-variant: 220 10% 85%;
+  
+  /* Brand colors */
+  --deep-navy: 220 60% 15%;
+  --global-orange: 24 95% 53%;
+  --wise-green: 158 64% 52%;
+  --soft-blue: 210 100% 95%;
+}
+
+.dark {
+  --background: 220 30% 6%;
+  --foreground: 220 15% 95%;
+  
+  --card: 220 25% 10%;
+  --card-foreground: 220 15% 95%;
+  
+  --popover: 220 25% 10%;
+  --popover-foreground: 220 15% 95%;
+  
+  --primary: 158 64% 52%;
+  --primary-foreground: 220 30% 6%;
+  
+  --secondary: 220 40% 25%;
+  --secondary-foreground: 220 15% 95%;
+  
+  --accent: 24 95% 53%;
+  --accent-foreground: 0 0% 100%;
+  
+  --muted: 220 25% 15%;
+  --muted-foreground: 220 10% 55%;
+  
+  --destructive: 0 62% 50%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --success: 158 64% 45%;
+  --success-foreground: 0 0% 100%;
+  
+  --warning: 38 92% 50%;
+  --warning-foreground: 0 0% 100%;
+  
+  --border: 220 20% 18%;
+  --input: 220 20% 12%;
+  --ring: 24 95% 53%;
+  
+  --surface: 220 30% 6%;
+  --surface-elevated: 220 25% 10%;
+  --surface-container: 220 25% 12%;
+  --surface-container-low: 220 25% 8%;
+  --surface-container-high: 220 22% 15%;
+  
+  --deep-navy: 220 60% 15%;
+  --global-orange: 24 95% 58%;
+  --wise-green: 158 64% 55%;
+  --soft-blue: 210 50% 20%;
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-surface: hsl(var(--surface));
+  --color-surface-elevated: hsl(var(--surface-elevated));
+  --color-surface-container: hsl(var(--surface-container));
+  --color-surface-container-low: hsl(var(--surface-container-low));
+  --color-surface-container-high: hsl(var(--surface-container-high));
+  --color-on-surface: hsl(var(--on-surface));
+  --color-on-surface-variant: hsl(var(--on-surface-variant));
+  --color-outline: hsl(var(--outline));
+  --color-outline-variant: hsl(var(--outline-variant));
+  --color-deep-navy: hsl(var(--deep-navy));
+  --color-global-orange: hsl(var(--global-orange));
+  --color-wise-green: hsl(var(--wise-green));
+  --color-soft-blue: hsl(var(--soft-blue));
+  --radius-sm: calc(var(--radius) - 8px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 8px);
+  --radius-2xl: calc(var(--radius) + 16px);
+  --radius-full: 9999px;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-headline: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply bg-background;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-headline);
+    @apply tracking-tight;
+  }
+}
+
+/* Premium scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--outline-variant));
+  border-radius: 100px;
+}
+
+/* Mobile optimizations */
+@supports (padding: max(0px)) {
+  .safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+  .safe-top {
+    padding-top: max(0.75rem, env(safe-area-inset-top));
+  }
+}
+
+/* Phone frame for demo */
+.phone-frame {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100dvh;
+}
+
+/* Smooth micro-interactions */
+.press-effect {
+  @apply transition-transform duration-150 active:scale-[0.97];
+}
+
+.tap-highlight {
+  @apply relative overflow-hidden;
+}
+
+.tap-highlight::after {
+  content: "";
+  @apply absolute inset-0 bg-foreground/5 opacity-0 transition-opacity duration-150;
+}
+
+.tap-highlight:active::after {
+  @apply opacity-100;
+}
+
+/* Glass effect for cards */
+.glass {
+  @apply bg-card/80 backdrop-blur-xl;
+}
+
+/* Shimmer loading animation */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--muted)) 0%,
+    hsl(var(--background)) 50%,
+    hsl(var(--muted)) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Success pulse animation */
+@keyframes success-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+.success-pulse {
+  animation: success-pulse 2s ease-in-out infinite;
+}
+
+/* Fade in animation */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fade-in-up 0.4s ease-out forwards;
+}
+
+/* Stagger children animation */
+.stagger-children > * {
+  animation: fade-in-up 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+
+/* Number animation for amounts */
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-number {
+  animation: count-up 0.3s ease-out;
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DiasporaConnect - Transfert Reçu</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "secondary-container": "#fd761a",
+                    "on-primary-fixed": "#101c2e",
+                    "outline": "#75777d",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-secondary-container": "#5c2400",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary": "#9d4300",
+                    "tertiary-fixed-dim": "#e5bfa2",
+                    "on-secondary-fixed": "#341100",
+                    "error-container": "#ffdad6",
+                    "surface": "#f7f9fb",
+                    "primary-fixed": "#d7e3fc",
+                    "on-primary-fixed-variant": "#3c475b",
+                    "surface-dim": "#d8dadc",
+                    "tertiary-fixed": "#ffdcc2",
+                    "surface-variant": "#e0e3e5",
+                    "on-surface-variant": "#45474c",
+                    "inverse-primary": "#bbc7df",
+                    "primary": "#101c2e",
+                    "secondary-fixed": "#ffdbca",
+                    "on-tertiary-fixed": "#2b1705",
+                    "on-tertiary-container": "#9e7d64",
+                    "surface-container": "#eceef0",
+                    "tertiary-container": "#2b1705",
+                    "tertiary": "#000000",
+                    "surface-tint": "#535f74",
+                    "inverse-surface": "#2d3133",
+                    "outline-variant": "#c5c6cd",
+                    "surface-container-low": "#f2f4f6",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed-dim": "#ffb690",
+                    "on-background": "#191c1e",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#f7f9fb",
+                    "primary-fixed-dim": "#bbc7df",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#eff1f3",
+                    "background": "#f7f9fb",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#783200",
+                    "primary-container": "#101c2e",
+                    "on-tertiary-fixed-variant": "#5c412b",
+                    "on-surface": "#191c1e",
+                    "on-surface-variant": "#45474c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, .font-manrope { font-family: 'Manrope', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col">
+<!-- Top App Bar -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-slate-50/70 backdrop-blur-xl shadow-[0_8px_24px_rgba(10,22,40,0.04)]">
+<div class="flex justify-between items-center px-6 py-4 w-full max-w-7xl mx-auto">
+<button class="active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-on-primary-fixed">arrow_back</span>
+</button>
+<h1 class="font-manrope font-semibold text-lg text-on-primary-fixed">Notification</h1>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="close up portrait of a beninese man smiling wearing a modern professional outfit soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJnxwKfQ_f0pDel-hNdE7qXUwiDrCemYgVZYWskrGwfMSRP3HZtKaHJHZXStYTtLAOvNinmZwrqRuYbRt7kifvbvfCcsCbm5ru2iUty8T3SFdPiz9mva18ufERlPQluoMeQR9qHugE06m7x2zZsd3QjSaeY_Dqy3oNF3M5ivDbFpFDfrNDdlVDX_kKAuaxRvTqZmxQVmzAYf2qNQpIhxNIWySE4j0wtyrq_bVIl1f_BDMWtggLTppZqFflxfQjwqxVhcTiiTLER0Wr"/>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col items-center pt-28 pb-32 px-6 w-full max-w-[390px] mx-auto overflow-y-auto">
+<!-- Big Success Indicator -->
+<div class="flex flex-col items-center mb-10">
+<div class="w-20 h-20 rounded-full bg-[#16A34A]/10 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-[#16A34A] !text-5xl" style="font-variation-settings: 'wght' 600;">check_circle</span>
+</div>
+<h2 class="text-2xl font-manrope font-bold text-on-primary-fixed tracking-tight">Transfert reçu !</h2>
+</div>
+<!-- Amount Card -->
+<section class="w-full bg-surface-container-lowest rounded-2xl p-8 mb-8 shadow-[0_8px_32px_rgba(10,22,40,0.03)] flex flex-col items-center text-center">
+<span class="text-4xl md:text-5xl font-manrope font-extrabold text-on-primary-fixed mb-2">118 400 XOF</span>
+<p class="text-on-surface-variant text-sm font-medium mb-6">De : Aminata Monteiro · France</p>
+<!-- Blockchain Badge -->
+<div class="inline-flex items-center gap-2 px-4 py-1.5 bg-[#16A34A]/5 rounded-full border border-[#16A34A]/10">
+<span class="material-symbols-outlined text-[#16A34A] !text-[14px]">pentagon</span>
+<span class="text-[#16A34A] text-[11px] font-semibold uppercase tracking-wider">Confirmé sur blockchain</span>
+</div>
+</section>
+<!-- Actions -->
+<div class="w-full flex flex-col gap-3 mb-8">
+<button class="w-full h-[56px] rounded-full bg-primary text-white font-semibold text-[15px] active:scale-[0.98] transition-all hover:opacity-90">
+                Retirer en espèces via mobile money
+            </button>
+<button class="w-full h-[56px] rounded-full border-2 border-primary text-primary font-semibold text-[15px] active:scale-[0.98] transition-all bg-transparent">
+                Conserver dans le portefeuille
+            </button>
+</div>
+<!-- Mobile Money Selector -->
+<div class="w-full mb-12">
+<div class="flex gap-3">
+<div class="flex-1 p-4 bg-surface-container-low rounded-2xl flex flex-col items-center justify-center border-2 border-secondary-container shadow-sm active:scale-95 transition-transform">
+<img alt="MTN MoMo" class="w-10 h-10 rounded-lg mb-2" data-alt="MTN mobile money yellow and blue branding icon minimalist flat design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb2Pvw801iWyN8k-NocXm_VH3A-FGOhaaPFnYgg99GFiOYIK9IZwz3GU1EsxrzGts5aMM23UGE0iUKqEyC3aIyGJpoc_mYTxCoYpbo_cgHgcsZ2KEEDpc2cRfkirqe5rXlfqG26uHeIjCTxn5TILsUiSYWH36fxTA7xjDy6uvEitljtaD8zJSUAtjLM_0nHrhpcX7bk92OPR_OAofK-5MG3z5VqBjlpdXoLNb6BsDhlNGO9O-7ACPW3cETEiww2OS1eGCXlUmCWMEN"/>
+<span class="text-xs font-bold text-on-primary-fixed">MTN MoMo</span>
+</div>
+<div class="flex-1 p-4 bg-surface-container-low rounded-2xl flex flex-col items-center justify-center border-2 border-transparent hover:border-outline-variant active:scale-95 transition-transform">
+<img alt="Moov Money" class="w-10 h-10 rounded-lg mb-2" data-alt="Moov Money blue and white branding icon minimalist flat design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCViD9vJS19cgffKgyNrbS8fQTVOKcWOvrIdGaipiQCx29UXi5rvzhPxvUbXzLEfLDBEN-KtSV8XG9cO4nhHkIpO6Gf1boEUibAO9JyW1XsV4jflL1MeyuK0SPfG0iL3hQWJCclnfnwFlDtW1lQIX5j-NiHsGZghnEM7Xy6NdeHG_0-AxRA8iTQk4Lzf9RzhdSiw9qVUpr2HV1LUCaMDSRRxwbjT-3h_13PXS0c3EmhefGVs7vFMK0p7AMRrtKd4ZJgGseaqJjAWfWK"/>
+<span class="text-xs font-bold text-on-primary-fixed">Moov Money</span>
+</div>
+</div>
+</div>
+<!-- Info Footer -->
+<footer class="text-center space-y-2 mb-10 opacity-60">
+<div class="flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined !text-sm">security</span>
+<p class="text-[11px] font-medium text-on-surface-variant">Transfert sécurisé via blockchain · Sans intermédiaire bancaire</p>
+</div>
+<p class="text-[11px] font-medium text-on-surface-variant uppercase tracking-widest">Bénin · DiasporaConnect · MIABE Hackathon 2026</p>
+</footer>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-slate-50/70 backdrop-blur-xl shadow-[0_-8px_24px_rgba(10,22,40,0.04)] rounded-t-[2rem]">
+<div class="flex justify-around items-center px-4 pb-8 pt-4">
+<!-- Accueil (Active) -->
+<button class="flex flex-col items-center justify-center bg-orange-50 text-orange-600 rounded-full px-5 py-2.5 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-manrope text-[10px] font-semibold uppercase tracking-wider mt-1">Accueil</span>
+</button>
+<!-- Portefeuille -->
+<button class="flex flex-col items-center justify-center text-slate-400 px-5 py-2.5 hover:text-orange-400 transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-manrope text-[10px] font-semibold uppercase tracking-wider mt-1">Portefeuille</span>
+</button>
+<!-- Historique -->
+<button class="flex flex-col items-center justify-center text-slate-400 px-5 py-2.5 hover:text-orange-400 transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-manrope text-[10px] font-semibold uppercase tracking-wider mt-1">Historique</span>
+</button>
+<!-- Profil -->
+<button class="flex flex-col items-center justify-center text-slate-400 px-5 py-2.5 hover:text-orange-400 transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-manrope text-[10px] font-semibold uppercase tracking-wider mt-1">Profil</span>
+</button>
+</div>
+</nav>
+</body></html>

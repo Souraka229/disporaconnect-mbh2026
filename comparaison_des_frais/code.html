@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=390, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-secondary-container": "#5c2400",
+                "error": "#ba1a1a",
+                "primary-container": "#101c2e",
+                "on-secondary": "#ffffff",
+                "surface-container-low": "#f2f4f6",
+                "on-tertiary-fixed": "#2b1705",
+                "secondary-fixed-dim": "#ffb690",
+                "on-primary-fixed": "#101c2e",
+                "on-error": "#ffffff",
+                "inverse-primary": "#bbc7df",
+                "on-tertiary-container": "#9e7d64",
+                "tertiary-fixed-dim": "#e5bfa2",
+                "on-surface": "#191c1e",
+                "on-error-container": "#93000a",
+                "tertiary": "#000000",
+                "primary-fixed": "#d7e3fc",
+                "inverse-surface": "#2d3133",
+                "tertiary-container": "#2b1705",
+                "error-container": "#ffdad6",
+                "inverse-on-surface": "#eff1f3",
+                "on-tertiary-fixed-variant": "#5c412b",
+                "on-tertiary": "#ffffff",
+                "secondary-fixed": "#ffdbca",
+                "surface-container": "#eceef0",
+                "surface-dim": "#d8dadc",
+                "surface-container-high": "#e6e8ea",
+                "surface-bright": "#f7f9fb",
+                "surface": "#f7f9fb",
+                "outline-variant": "#c5c6cd",
+                "on-surface-variant": "#45474c",
+                "primary-fixed-dim": "#bbc7df",
+                "on-primary": "#ffffff",
+                "background": "#f7f9fb",
+                "surface-container-lowest": "#ffffff",
+                "surface-container-highest": "#e0e3e5",
+                "secondary": "#9d4300",
+                "on-primary-fixed-variant": "#3c475b",
+                "on-primary-container": "#79849b",
+                "primary": "#000000",
+                "on-secondary-fixed-variant": "#783200",
+                "on-secondary-fixed": "#341100",
+                "on-background": "#191c1e",
+                "surface-variant": "#e0e3e5",
+                "secondary-container": "#fd761a",
+                "outline": "#75777d",
+                "tertiary-fixed": "#ffdcc2",
+                "surface-tint": "#535f74"
+            },
+            "borderRadius": {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+            },
+            "fontFamily": {
+                "headline": ["Manrope"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface selection:bg-secondary-fixed antialiased">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-white/70 backdrop-blur-xl">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 duration-150 text-on-primary-fixed">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold text-on-primary-fixed tracking-tight">Comparaison des frais</h1>
+</div>
+<button class="hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-on-primary-fixed" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="pt-24 pb-32 px-6">
+<!-- Editorial Amount Display -->
+<div class="mb-10 text-center">
+<p class="text-on-surface-variant font-medium mb-1">Pour un envoi de 200 USD vers le Bénin</p>
+<h2 class="text-5xl font-extrabold text-on-primary-fixed tracking-tightest">200 USD</h2>
+</div>
+<!-- Savings Highlight Card -->
+<div class="bg-[#ECFDF5] border border-[#16A34A]/20 rounded-2xl p-6 mb-8 flex items-center gap-4">
+<div class="bg-[#16A34A] text-white p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="savings" style="font-variation-settings: 'FILL' 1;">savings</span>
+</div>
+<div>
+<p class="text-xl font-bold text-[#065F46]">Jusqu'à 28 USD économisés</p>
+<p class="text-sm text-[#065F46]/80">par transfert avec DiasporaConnect</p>
+</div>
+</div>
+<!-- Comparison Stack -->
+<div class="space-y-4">
+<!-- DiasporaConnect Card -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 border-2 border-[#16A34A] relative">
+<div class="absolute -top-3 right-6 bg-[#16A34A] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
+                    Recommandé
+                </div>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#FD761A]" data-icon="hexagon" style="font-variation-settings: 'FILL' 1;">hexagon</span>
+<span class="font-bold text-on-primary-fixed">DiasporaConnect</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<div>
+<p class="text-[11px] font-bold uppercase tracking-wider text-on-surface-variant/60 mb-1">Frais de service</p>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-extrabold text-[#16A34A]">0,8 %</span>
+<span class="text-on-surface-variant font-medium">= 1,60 USD</span>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-surface-container flex justify-between items-center">
+<p class="text-sm font-medium text-on-surface-variant">Le bénéficiaire reçoit</p>
+<p class="text-lg font-bold text-on-primary-fixed">118 690 XOF</p>
+</div>
+</div>
+<!-- Traditional Services Card -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/30">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="font-bold text-on-primary-fixed">Services traditionnels</span>
+</div>
+<div class="flex gap-2 grayscale opacity-60">
+<span class="material-symbols-outlined text-sm" data-icon="account_balance">account_balance</span>
+<span class="material-symbols-outlined text-sm" data-icon="payments">payments</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<div>
+<p class="text-[11px] font-bold uppercase tracking-wider text-on-surface-variant/60 mb-1">Frais moyens</p>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-extrabold text-error">7–15 %</span>
+<span class="text-on-surface-variant font-medium">= 14 à 30 USD</span>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-surface-container flex justify-between items-center">
+<p class="text-sm font-medium text-on-surface-variant">Le bénéficiaire reçoit</p>
+<p class="text-lg font-bold text-on-surface/40 italic">101k–109k XOF</p>
+</div>
+</div>
+</div>
+<!-- Bar Chart Section -->
+<div class="mt-12">
+<h3 class="text-center text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-8">Analyse comparative des coûts</h3>
+<div class="flex items-end justify-center gap-12 h-40 px-8">
+<div class="flex flex-col items-center flex-1">
+<div class="w-full bg-[#16A34A] rounded-t-lg h-[15%] relative group">
+<span class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs font-bold text-[#16A34A]">1.60$</span>
+</div>
+<p class="text-[10px] font-bold mt-3 text-on-surface-variant text-center leading-tight">DIASPORA</p>
+</div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-full bg-error rounded-t-lg h-[85%] relative">
+<span class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs font-bold text-error">22.00$*</span>
+</div>
+<p class="text-[10px] font-bold mt-3 text-on-surface-variant text-center leading-tight">BANQUES / AGENCES</p>
+</div>
+</div>
+</div>
+<!-- Footer Info -->
+<div class="mt-12 text-center">
+<p class="text-[12px] text-on-surface-variant leading-relaxed">
+                Transfert sécurisé · vérifiable · sans intermédiaire bancaire
+            </p>
+</div>
+</main>
+<!-- Fixed Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 w-full px-6 pb-8 pt-4 bg-white/80 backdrop-blur-2xl z-50">
+<button class="w-full bg-secondary-container text-white py-4 rounded-full font-bold flex items-center justify-center gap-2 active:scale-[0.98] transition-all shadow-lg shadow-secondary-container/20">
+<span>Envoyer maintenant via DiasporaConnect</span>
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Hidden Bottom Nav for top-level context (Suppressed for focused comparison screen as per rules) -->
+</body></html>
