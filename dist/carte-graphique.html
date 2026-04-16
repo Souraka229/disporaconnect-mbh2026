@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DiasporaConnect - Carte Graphique</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+    }
+    
+    /* Carte de visite - Recto */
+    .business-card {
+      width: 400px;
+      height: 240px;
+      background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+      border-radius: 20px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    
+    .business-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(249, 115, 22, 0.3) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    
+    .business-card::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -20%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(22, 163, 74, 0.2) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    
+    .card-content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .logo {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #f97316 0%, #16a34a 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: white;
+    }
+    
+    .brand-name {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: white;
+    }
+    
+    .tagline {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+    
+    .card-body {
+      text-align: right;
+    }
+    
+    .name {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: white;
+    }
+    
+    .role {
+      font-size: 13px;
+      color: #f97316;
+      margin-top: 4px;
+    }
+    
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .contact-info {
+      font-size: 11px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+    
+    .qr-placeholder {
+      width: 48px;
+      height: 48px;
+      background: white;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: #1a1a2e;
+    }
+    
+    /* Affiche promo */
+    .poster {
+      width: 400px;
+      height: 560px;
+      background: linear-gradient(180deg, #f8f9fb 0%, #ffffff 100%);
+      border-radius: 24px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    .poster-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .poster-logo {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #f97316 0%, #16a34a 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 24px;
+      color: white;
+    }
+    
+    .poster-title {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 28px;
+      color: #1a1a2e;
+    }
+    
+    .poster-subtitle {
+      font-size: 14px;
+      color: #64748b;
+      margin-top: 8px;
+    }
+    
+    .comparison-box {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      border: 2px solid #e2e8f0;
+    }
+    
+    .comparison-title {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #1a1a2e;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    
+    .fee-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .fee-row:last-child {
+      border-bottom: none;
+    }
+    
+    .fee-name {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    
+    .fee-name.wu {
+      color: #ef4444;
+    }
+    
+    .fee-name.dc {
+      color: #16a34a;
+    }
+    
+    .fee-value {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+    }
+    
+    .fee-value.wu {
+      color: #ef4444;
+      text-decoration: line-through;
+    }
+    
+    .fee-value.dc {
+      color: #16a34a;
+    }
+    
+    .savings-box {
+      background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+      border-radius: 16px;
+      padding: 24px;
+      color: white;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    
+    .savings-amount {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 36px;
+    }
+    
+    .savings-label {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-top: 4px;
+    }
+    
+    .features {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 24px;
+    }
+    
+    .feature {
+      text-align: center;
+    }
+    
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      background: #f1f5f9;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 8px;
+      font-size: 18px;
+    }
+    
+    .feature-text {
+      font-size: 11px;
+      font-weight: 600;
+      color: #475569;
+    }
+    
+    .cta-button {
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 16px 32px;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: auto;
+      text-align: center;
+    }
+    
+    .footer-info {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 11px;
+      color: #94a3b8;
+    }
+    
+    @media print {
+      body {
+        background: white;
+      }
+      
+      .card-container {
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card-container">
+    <!-- Carte de visite -->
+    <div class="business-card">
+      <div class="card-content">
+        <div class="card-header">
+          <div class="logo">DC</div>
+          <div>
+            <div class="brand-name">DiasporaConnect</div>
+            <div class="tagline">Transferts blockchain Bénin</div>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <div class="name">Aminata D.</div>
+          <div class="role">Ambassadrice Diaspora</div>
+        </div>
+        
+        <div class="card-footer">
+          <div class="contact-info">
+            www.diasporaconnect.bj<br>
+            contact@diasporaconnect.bj<br>
+            +229 97 XX XX XX
+          </div>
+          <div class="qr-placeholder">QR</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Affiche promotionnelle -->
+    <div class="poster">
+      <div class="poster-header">
+        <div class="poster-logo">DC</div>
+        <h1 class="poster-title">DiasporaConnect</h1>
+        <p class="poster-subtitle">🇧🇯 Transferts vers le Bénin sans frais cachés</p>
+      </div>
+      
+      <div class="comparison-box">
+        <div class="comparison-title">Économisez sur chaque transfert de 200$</div>
+        <div class="fee-row">
+          <span class="fee-name wu">Western Union</span>
+          <span class="fee-value wu">22 $</span>
+        </div>
+        <div class="fee-row">
+          <span class="fee-name wu">MoneyGram</span>
+          <span class="fee-value wu">18 $</span>
+        </div>
+        <div class="fee-row">
+          <span class="fee-name dc">DiasporaConnect</span>
+          <span class="fee-value dc">1,60 $</span>
+        </div>
+      </div>
+      
+      <div class="savings-box">
+        <div class="savings-amount">+ 70M $</div>
+        <div class="savings-label">retournés aux familles / an</div>
+      </div>
+      
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-text">30 min</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🔒</div>
+          <div class="feature-text">Blockchain</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📱</div>
+          <div class="feature-text">Mobile Money</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">✓</div>
+          <div class="feature-text">BCEAO</div>
+        </div>
+      </div>
+      
+      <button class="cta-button">Télécharger l'app →</button>
+      
+      <div class="footer-info">
+        Miabe Hackathon 2026 · Darollo Technologies
+      </div>
+    </div>
+  </div>
+</body>
+</html>
