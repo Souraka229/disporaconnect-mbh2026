@@ -1,0 +1,46 @@
+
+> backend@1.0.0 start
+> node src/index.js
+
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+🚀 DiasporaConnect Backend running on http://localhost:3000
+[2026-05-02T10:59:48.559Z] POST /api/auth/register
+==================================================
+📱 [TWILIO SIMULATION] SMS envoyé à : +33600000000
+💬 "Ton code de vérification DiasporaConnect est: 123456"
+==================================================
+[2026-05-02T10:59:48.604Z] POST /api/auth/verify-otp
+[2026-05-02T10:59:48.678Z] POST /api/auth/register
+==================================================
+📱 [TWILIO SIMULATION] SMS envoyé à : +22966111111
+💬 "Ton code de vérification DiasporaConnect est: 123456"
+==================================================
+[2026-05-02T10:59:48.703Z] POST /api/auth/verify-otp
+[2026-05-02T10:59:49.559Z] POST /api/transfer
+Erreur CoinGecko: Cannot read properties of undefined (reading 'toFixed')
+Blockchain error: TypeError: invalid BytesLike value (argument="value", value="0xc42069029b6ff74ffc0e0dadfa8e11fd:35f989e2ee8b717ca65325eb8647201d25eedf1498d0a6a27f7b4f0d7775429de04e0cfd7d7eb772bcb0eec5dcdae7e89313569293d5bf05fe22aee706a18d75d4f5700b2b3dde92a30bef5097f460a8", code=INVALID_ARGUMENT, version=6.16.0)
+    at makeError (file:///home/stj/Documents/PROJET/Projet_MBH2026/backend/node_modules/ethers/lib.esm/utils/errors.js:125:21)
+    at assert (file:///home/stj/Documents/PROJET/Projet_MBH2026/backend/node_modules/ethers/lib.esm/utils/errors.js:151:15)
+    at assertArgument (file:///home/stj/Documents/PROJET/Projet_MBH2026/backend/node_modules/ethers/lib.esm/utils/errors.js:162:5)
+    at _getBytes (file:///home/stj/Documents/PROJET/Projet_MBH2026/backend/node_modules/ethers/lib.esm/utils/data.js:25:5)
+    at getBytes (file:///home/stj/Documents/PROJET/Projet_MBH2026/backend/node_modules/ethers/lib.esm/utils/data.js:35:12)
+    at dataLength (file:///home/stj/Documents/PROJET/Projet_MBH2026/backend/node_modules/ethers/lib.esm/utils/data.js:100:12)
+    at new SigningKey (file:///home/stj/Documents/PROJET/Projet_MBH2026/backend/node_modules/ethers/lib.esm/crypto/signing-key.js:19:24)
+    at new Wallet (file:///home/stj/Documents/PROJET/Projet_MBH2026/backend/node_modules/ethers/lib.esm/wallet/wallet.js:30:56)
+    at Object.initiateTransferOnChain (file:///home/stj/Documents/PROJET/Projet_MBH2026/backend/src/services/blockchain.js:64:30)
+    at file:///home/stj/Documents/PROJET/Projet_MBH2026/backend/src/routes/transfer.js:66:52 {
+  code: 'INVALID_ARGUMENT',
+  argument: 'value',
+  value: '0xc42069029b6ff74ffc0e0dadfa8e11fd:35f989e2ee8b717ca65325eb8647201d25eedf1498d0a6a27f7b4f0d7775429de04e0cfd7d7eb772bcb0eec5dcdae7e89313569293d5bf05fe22aee706a18d75d4f5700b2b3dde92a30bef5097f460a8',
+  shortMessage: 'invalid BytesLike value'
+}
+[2026-05-02T10:59:50.316Z] POST /api/withdraw
+[2026-05-02T11:07:37.492Z] GET /api/health
+[2026-05-02T11:07:37.499Z] GET /api/rates
+Erreur CoinGecko: Cannot read properties of undefined (reading 'toFixed')
+[2026-05-02T11:07:55.436Z] POST /api/auth/register
+==================================================
+📱 [TWILIO SIMULATION] SMS envoyé à : +33600000000
+💬 "Ton code de vérification DiasporaConnect est: 123456"
+==================================================
+[2026-05-02T11:07:55.478Z] POST /api/auth/verify-otp
