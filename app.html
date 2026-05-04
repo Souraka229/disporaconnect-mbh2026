@@ -109,11 +109,11 @@
           </div>
         </div>
 
-        <button class="btn-primary-full" onclick="goScreen('d-otp')">
+        <button class="btn-primary-full" onclick="goScreen('d-login')">
           Commencer un transfert <i data-lucide="arrow-right"></i>
         </button>
 
-        <button class="btn-outline-full" onclick="goScreen('d-otp')">
+        <button class="btn-outline-full" onclick="goScreen('d-login')">
           Voir la comparaison des frais
         </button>
 
@@ -140,6 +140,69 @@
             <span class="tx-amount">200 USD</span>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- D-Login/Register Screen (KYC) -->
+    <div class="screen" id="d-login">
+      <div class="screen-scroll screen-centered">
+        <div class="d-home-header">
+          <div>
+            <h2 class="greeting">Connexion</h2>
+            <p class="greeting-sub">Identifiez-vous pour continuer</p>
+          </div>
+        </div>
+
+        <!-- Login Tabs -->
+        <div class="login-tabs" style="display:flex;gap:8px;margin-bottom:20px;">
+          <button class="login-tab active" id="tab-login" onclick="showLoginTab('login')">Se connecter</button>
+          <button class="login-tab" id="tab-register" onclick="showLoginTab('register')">S'inscrire</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="card" style="padding:20px; width: 100%;">
+          <label style="font-size:.75rem;font-weight:600;color:#9CA3AF;text-transform:uppercase;display:block;margin-bottom:8px;">Numéro de téléphone</label>
+          <input type="tel" id="loginPhone" class="tf-input" placeholder="+33 6 12 34 56 78" style="width:100%;font-size:1rem;padding:12px;border:1px solid #E5E7EB;border-radius:8px;margin-bottom:16px;"/>
+          
+          <button type="submit" id="loginBtn" class="btn-primary-full">
+            Recevoir le code <i data-lucide="smartphone"></i>
+          </button>
+        </form>
+
+        <!-- Register Form (hidden by default) -->
+        <form id="registerForm" class="card hidden" style="padding:20px; width: 100%;">
+          <label style="font-size:.75rem;font-weight:600;color:#9CA3AF;text-transform:uppercase;display:block;margin-bottom:8px;">Nom complet</label>
+          <input type="text" id="regName" class="tf-input" placeholder="Prénom Nom" style="width:100%;font-size:1rem;padding:12px;border:1px solid #E5E7EB;border-radius:8px;margin-bottom:12px;"/>
+          
+          <label style="font-size:.75rem;font-weight:600;color:#9CA3AF;text-transform:uppercase;display:block;margin-bottom:8px;">Numéro de téléphone</label>
+          <input type="tel" id="regPhone" class="tf-input" placeholder="+33 6 12 34 56 78" style="width:100%;font-size:1rem;padding:12px;border:1px solid #E5E7EB;border-radius:8px;margin-bottom:12px;"/>
+          
+          <label style="font-size:.75rem;font-weight:600;color:#9CA3AF;text-transform:uppercase;display:block;margin-bottom:8px;">Pays de résidence</label>
+          <select id="regCountry" class="tf-input" style="width:100%;font-size:1rem;padding:12px;border:1px solid #E5E7EB;border-radius:8px;margin-bottom:16px;">
+            <option value="FR">France</option>
+            <option value="BE">Belgique</option>
+            <option value="CH">Suisse</option>
+            <option value="CA">Canada</option>
+            <option value="US">États-Unis</option>
+            <option value="GB">Royaume-Uni</option>
+            <option value="DE">Allemagne</option>
+            <option value="IT">Italie</option>
+            <option value="ES">Espagne</option>
+            <option value="NL">Pays-Bas</option>
+          </select>
+          
+          <button type="submit" id="registerBtn" class="btn-primary-full">
+            S'inscrire et recevoir le code <i data-lucide="user-plus"></i>
+          </button>
+        </form>
+
+        <p style="color:#9CA3AF;font-size:.8rem;text-align:center;margin-top:16px;">
+          Code demo: 123456
+        </p>
+
+        <button class="btn-outline-full" onclick="goScreen('d-home')" style="margin-top:20px;border-color:#E5E7EB;color:#6B7280;">
+          Retour <i data-lucide="arrow-left"></i>
+        </button>
       </div>
     </div>
 
@@ -455,15 +518,15 @@
         </div>
 
         <div class="b-actions">
-          <button class="b-action" onclick="goScreen('b-search')">
+          <button class="b-action" onclick="checkBeninAuth('b-search')">
             <div class="b-action-icon"><i data-lucide="download"></i></div>
             <span>Recevoir</span>
           </button>
-          <button class="b-action" onclick="goScreen('b-bills')">
+          <button class="b-action" onclick="checkBeninAuth('b-bills')">
             <div class="b-action-icon"><i data-lucide="file-text"></i></div>
             <span>Factures</span>
           </button>
-          <button class="b-action" onclick="goScreen('b-withdraw')">
+          <button class="b-action" onclick="checkBeninAuth('b-withdraw')">
             <div class="b-action-icon b-action-icon-plus"><i data-lucide="plus"></i></div>
             <span>Retirer</span>
           </button>
@@ -496,6 +559,62 @@
             <span class="tx-amount tx-positive">+ 65 596 XOF</span>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- B-Login Screen -->
+    <div class="screen" id="b-login">
+      <div class="screen-scroll screen-centered">
+        <div class="b-hero-top" style="text-align:center;margin-bottom:24px;">
+          <div>
+            <h2 class="b-greeting">Connexion</h2>
+            <p class="b-greeting-sub">Identifiez-vous pour accéder à votre compte</p>
+          </div>
+        </div>
+
+        <form id="beninLoginForm" class="card" style="padding:20px; width: 100%;">
+          <label style="font-size:.75rem;font-weight:600;color:#9CA3AF;text-transform:uppercase;display:block;margin-bottom:8px;">Numéro de téléphone MTN ou Moov</label>
+          <input type="tel" id="beninLoginPhone" class="tf-input" placeholder="+229 97 00 00 00" style="width:100%;font-size:1rem;padding:12px;border:1px solid #E5E7EB;border-radius:8px;margin-bottom:16px;"/>
+          
+          <button type="submit" id="beninLoginBtn" class="btn-green-full">
+            Recevoir le code <i data-lucide="smartphone"></i>
+          </button>
+        </form>
+
+        <p style="color:#9CA3AF;font-size:.8rem;text-align:center;margin-top:16px;">
+          Code demo: 123456
+        </p>
+      </div>
+    </div>
+
+    <!-- B-OTP Verification -->
+    <div class="screen" id="b-verify">
+      <div class="screen-scroll screen-centered">
+        <div class="b-hero-top" style="text-align:center;margin-bottom:24px;">
+          <div>
+            <h2 class="b-greeting">Vérification</h2>
+            <p class="b-greeting-sub">Entrez le code envoyé sur votre téléphone</p>
+          </div>
+        </div>
+
+        <form id="beninVerifyForm" class="card" style="padding:20px; width: 100%;">
+          <div class="otp-inputs" style="display:flex;gap:8px;justify-content:center;margin-bottom:20px;">
+            <input type="text" maxlength="1" class="otp-input b-otp-input" style="width:44px;height:52px;font-size:1.5rem;text-align:center;border:2px solid #E5E7EB;border-radius:8px;padding:0;"/>
+            <input type="text" maxlength="1" class="otp-input b-otp-input" style="width:44px;height:52px;font-size:1.5rem;text-align:center;border:2px solid #E5E7EB;border-radius:8px;padding:0;"/>
+            <input type="text" maxlength="1" class="otp-input b-otp-input" style="width:44px;height:52px;font-size:1.5rem;text-align:center;border:2px solid #E5E7EB;border-radius:8px;padding:0;"/>
+            <input type="text" maxlength="1" class="otp-input b-otp-input" style="width:44px;height:52px;font-size:1.5rem;text-align:center;border:2px solid #E5E7EB;border-radius:8px;padding:0;"/>
+            <input type="text" maxlength="1" class="otp-input b-otp-input" style="width:44px;height:52px;font-size:1.5rem;text-align:center;border:2px solid #E5E7EB;border-radius:8px;padding:0;"/>
+            <input type="text" maxlength="1" class="otp-input b-otp-input" style="width:44px;height:52px;font-size:1.5rem;text-align:center;border:2px solid #E5E7EB;border-radius:8px;padding:0;"/>
+          </div>
+          
+          <button type="submit" id="beninVerifyBtn" class="btn-green-full">
+            Vérifier <i data-lucide="check"></i>
+          </button>
+        </form>
+
+        <p style="color:#9CA3AF;font-size:.8rem;text-align:center;margin-top:16px;">
+          Code demo: 123456
+        </p>
       </div>
     </div>
 

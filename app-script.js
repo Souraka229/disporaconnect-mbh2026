@@ -9,6 +9,7 @@ const USE_MOCK = true; // Set to false when real backend is available
 
 // Session state
 let sessionPhone = '';
+let sessionName = '';
 
 // Exchange rates (fallback values)
 let EXCHANGE_RATES = {
@@ -44,6 +45,16 @@ const mockApi = {
     async getRates() {
         await delay(800);
         return EXCHANGE_RATES;
+    },
+
+    async register(data) {
+        await delay(1500);
+        return { 
+            success: true, 
+            message: 'Inscription réussie', 
+            phone: data.phone,
+            name: data.name 
+        };
     },
 
     async sendOTP(phone) {
@@ -131,6 +142,7 @@ function mockApiCall(endpoint, options = {}) {
     const body = options.body ? JSON.parse(options.body) : {};
     
     if (endpoint === '/api/rates') return mockApi.getRates();
+    if (endpoint === '/api/auth/register') return mockApi.register(body);
     if (endpoint === '/api/auth/send-otp') return mockApi.sendOTP(body.phone);
     if (endpoint === '/api/auth/verify-otp') return mockApi.verifyOTP(body.phone, body.otpCode);
     if (endpoint === '/api/transfer/send') return mockApi.sendTransfer(body);
@@ -173,8 +185,8 @@ function initApp() {
         const nav = shell.querySelector('.bottom-nav');
         if (nav) {
             const items = nav.querySelectorAll('.bnav-item');
-            const dMap = { 'd-home': 0, 'd-transfer': 1, 'd-summary': 1, 'd-sent': 1, 'd-history': 2, 'd-profile': 3, 'd-otp': 1, 'd-verify': 1 };
-            const bMap = { 'b-home': 0, 'b-search': 1, 'b-bills': 2, 'b-withdraw': 3, 'b-withdraw-success': 3, 'b-profile': -1 };
+            const dMap = { 'd-home': 0, 'd-login': 1, 'd-otp': 1, 'd-verify': 1, 'd-transfer': 1, 'd-summary': 1, 'd-sent': 1, 'd-history': 2, 'd-profile': 3 };
+            const bMap = { 'b-home': 0, 'b-login': 1, 'b-verify': 1, 'b-search': 1, 'b-bills': 2, 'b-withdraw': 3, 'b-withdraw-success': 3, 'b-profile': -1 };
             const map = screenId.startsWith('d-') ? dMap : bMap;
             const idx = map[screenId];
             items.forEach((item, i) => item.classList.toggle('active', i === idx));
@@ -359,3 +371,113 @@ function updateHomeCalc() {
     document.getElementById('dFee').textContent = fmtDecimal(amt * 0.008) + ' ' + cur;
     document.getElementById('dSendFlag').src = `https://flagcdn.com/w40/${dSendCur.options[dSendCur.selectedIndex].dataset.flag}.png`;
 }
+
+// Login/Register Tabs
+window.showLoginTab = function(tab) {
+    document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+    document.getElementById('tab-register').classList.toggle('active', tab === 'register');
+    document.getElementById('loginForm').classList.toggle('hidden', tab === 'register');
+    document.getElementById('registerForm').classList.toggle('hidden', tab === 'login');
+};
+
+// Login Form
+document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const phone = document.getElementById('loginPhone').value;
+    if (!phone) return showAlert('Entrez un numéro');
+    const btn = document.getElementById('loginBtn');
+    btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>...';
+    const res = await apiCall('/api/auth/send-otp', { method: 'POST', body: JSON.stringify({ phone }) });
+    btn.disabled = false; btn.innerHTML = 'Recevoir le code <i data-lucide="smartphone"></i>';
+    if (res.success) {
+        sessionPhone = phone;
+        sessionName = ''; // Login mode
+        goScreen('d-verify');
+    }
+    lucide.createIcons();
+});
+
+// Register Form
+document.getElementById('registerForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('regName').value;
+    const phone = document.getElementById('regPhone').value;
+    const country = document.getElementById('regCountry').value;
+    if (!name || !phone) return showAlert('Remplissez tous les champs');
+    const btn = document.getElementById('registerBtn');
+    btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>...';
+    const res = await apiCall('/api/auth/register', { method: 'POST', body: JSON.stringify({ name, phone, country }) });
+    btn.disabled = false; btn.innerHTML = 'S\'inscrire et recevoir le code <i data-lucide="user-plus"></i>';
+    if (res.success) {
+        sessionPhone = phone;
+        sessionName = name;
+        goScreen('d-verify');
+    }
+    lucide.createIcons();
+});
+
+// Benin Auth Check
+let isBeninLoggedIn = false;
+window.checkBeninAuth = function(targetScreen) {
+    if (!isBeninLoggedIn) {
+        // Show Benin login first
+        goScreen('b-login');
+    } else {
+        goScreen(targetScreen);
+    }
+};
+
+window.setBeninLoggedIn = function(name) {
+    isBeninLoggedIn = true;
+    sessionName = name;
+    // Update greeting
+    const greeting = document.querySelector('.b-greeting');
+    if (greeting) {
+        greeting.innerHTML = `Bonjour, ${name.split(' ')[0]} <span class="wave">&#128075;</span>`;
+    }
+    goScreen('b-home');
+};
+
+// Benin Login Form
+document.getElementById('beninLoginForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const phone = document.getElementById('beninLoginPhone').value;
+    if (!phone) return showAlert('Entrez un numéro');
+    const btn = document.getElementById('beninLoginBtn');
+    btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>...';
+    const res = await apiCall('/api/auth/send-otp', { method: 'POST', body: JSON.stringify({ phone }) });
+    btn.disabled = false; btn.innerHTML = 'Recevoir le code <i data-lucide="smartphone"></i>';
+    if (res.success) {
+        sessionPhone = phone;
+        goScreen('b-verify');
+    }
+    lucide.createIcons();
+});
+
+// Benin Verify Form
+document.getElementById('beninVerifyForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const otp = Array.from(document.querySelectorAll('.b-otp-input')).map(i => i.value).join('');
+    if (otp.length < 6) return showAlert('Code incomplet');
+    const btn = document.getElementById('beninVerifyBtn');
+    btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>...';
+    const res = await apiCall('/api/auth/verify-otp', { method: 'POST', body: JSON.stringify({ phone: sessionPhone, otpCode: otp }) });
+    btn.disabled = false; btn.innerHTML = 'Vérifier <i data-lucide="check"></i>';
+    if (res.success) {
+        setBeninLoggedIn('Utilisateur');
+    } else {
+        showAlert('Code erroné (utilisez 123456)');
+    }
+    lucide.createIcons();
+});
+
+// Benin OTP Inputs auto-focus
+const bInputs = document.querySelectorAll('.b-otp-input');
+bInputs.forEach((input, i) => {
+    input.addEventListener('input', () => {
+        if (input.value && i < bInputs.length - 1) bInputs[i+1].focus();
+    });
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && !input.value && i > 0) bInputs[i-1].focus();
+    });
+});

@@ -539,6 +539,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .wm-item strong { display: block; font-size: .88rem; color: var(--dark); }
 .wm-item span { font-size: .78rem; color: var(--g400); }
 
+
 /* =============== DESKTOP VIEW =============== */
 @media (min-width: 500px) {
   body { background: linear-gradient(135deg, #FFF7ED 0%, #F0FDF4 100%); }
@@ -547,3 +548,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     box-shadow: 0 24px 64px rgba(0,0,0,.12), 0 0 0 1px rgba(0,0,0,.04);
   }
 }
+
+
+/* Login/Register Tabs */
+.login-tabs { display: flex; gap: 0; border-radius: 10px; overflow: hidden; border: 1px solid #E5E7EB; background: #F9FAFB; }
+.login-tab { flex: 1; padding: 12px 16px; border: none; background: transparent; font-size: .9rem; font-weight: 600; color: var(--g500); cursor: pointer; transition: all .2s; }
+.login-tab.active { background: var(--orange); color: #fff; }
+.login-tab:not(.active):hover { background: #F3F4F6; }
