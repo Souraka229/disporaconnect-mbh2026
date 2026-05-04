@@ -1,0 +1,144 @@
+ ## Mission : Finaliser DiasporaConnect pour la demi-finale hackathon
+
+Tu travailles sur un prototype déjà existant. Ton rôle est de le rendre 
+100% fonctionnel, connecté au backend, et de préparer tous les livrables 
+requis avant 15h aujourd'hui.
+
+---
+
+## Repo GitHub
+* URL : https://github.com/Souraka229/disporaconnect-mbh2026.git
+* Branche : stj_branch
+* Clone cette branche et travaille dessus uniquement.
+
+---
+
+## Prototype existant (BASE DE TRAVAIL)
+Le frontend est déjà en place ici :
+https://diaspora-connect-ayaxntwu.devinapps.com/
+
+Il contient :
+* index.html → landing page complète (ne pas toucher le design)
+* app.html → interface principale avec 2 portails (Diaspora + Bénin)
+
+TON TRAVAIL = rendre app.html pleinement fonctionnel avec de vrais flux 
+interactifs connectés au backend.
+
+---
+
+## Ce que tu dois faire dans app.html
+
+### PORTAIL DIASPORA (expéditeur)
+1. Formulaire d'envoi :
+   - Nom complet
+   - Numéro de téléphone (format international)
+   - Montant à envoyer (USD/EUR/GBP/CAD)
+   - Calcul automatique : montant reçu en XOF avec frais 0.8%
+
+2. Flux OTP :
+   - Clic sur "Envoyer" → appel POST /api/auth/send-otp avec le numéro
+   - Affichage champ OTP 6 chiffres
+   - Vérification → POST /api/auth/verify-otp
+   - Si OTP validé → POST /api/transfer/send
+
+3. Écran de confirmation :
+   - ID de transaction (généré ou retourné par l'API)
+   - Montant envoyé, frais, montant reçu en XOF
+   - Statut : "En cours de traitement"
+
+### PORTAIL BÉNIN (destinataire)
+1. Recherche de transfert :
+   - Input numéro de téléphone du destinataire
+   - Clic → GET /api/transfer/:phone ou GET /api/transfer/:id
+   - Affichage : nom envoyeur, montant XOF, statut (badge coloré)
+
+2. Retrait Mobile Money :
+   - Bouton "Retirer"
+   - Modal : choix MTN MoMo / Moov Money
+   - Input numéro Mobile Money
+   - Confirmation → POST /api/withdraw
+   - Écran succès avec numéro de référence
+
+---
+
+## Connexion backend
+
+Les endpoints backend sont dans le repo (fichiers backend/). 
+Base URL à utiliser : crée une variable const API_BASE en haut du JS.
+
+Endpoints attendus :
+* POST /api/auth/send-otp
+* POST /api/auth/verify-otp  
+* POST /api/transfer/send
+* GET /api/transfer/:id
+* GET /api/rates
+* POST /api/withdraw
+
+⚠️ IMPORTANT : Si un endpoint backend ne répond pas ou n'est pas déployé,
+utilise des mocks réalistes avec un délai simulé (setTimeout 1200ms) pour 
+que TOUT soit démontrable sans serveur actif. L'app doit marcher en demo 
+même hors ligne.
+
+Exemple de mock :
+async function sendOTP(phone) {
+  // Essaie l'API réelle, fallback sur mock
+  try {
+    const res = await fetch(`${API_BASE}/api/auth/send-otp`, {...})
+    if (!res.ok) throw new Error()
+    return await res.json()
+  } catch {
+    await delay(1200)
+    return { success: true, message: "OTP envoyé (simulation)" }
+  }
+}
+
+---
+
+## Fichiers à créer (OBLIGATOIRES pour les livrables)
+
+À la racine du repo, crée ces 3 fichiers :
+
+1. lien_prototype.txt
+   Contenu : l'URL Vercel du site après déploiement
+   (ou l'URL Devin si pas de Vercel : https://diaspora-connect-ayaxntwu.devinapps.com/)
+
+2. lien_code.txt
+   Contenu : https://github.com/Souraka229/disporaconnect-mbh2026.git
+
+3. lien_demo.txt
+   Contenu : [VIDEO A ENREGISTRER PAR L'EQUIPE - placeholder]
+   Note: laisse juste ce placeholder, la vidéo sera ajoutée manuellement
+
+4. README.md (mettre à jour ou créer)
+   Structure obligatoire :
+   # DiasporaConnect
+   ## Description
+   ## Problème résolu
+   ## Solution
+   ## Tech Stack (Frontend / Backend / Blockchain)
+   ## Comment lancer en local
+   ## Variables d'environnement
+   ## Équipe
+   ## Lien prototype
+   ## MIABE Hackathon 2026
+
+---
+
+## Ordre d'exécution
+
+1. Clone le repo, branche stj_branch
+2. Inspecte la structure existante (index.html, app.html, backend/)
+3. Rends app.html fonctionnel (flux complet avec mocks si besoin)
+4. Crée les 3 fichiers livrables (lien_prototype.txt, lien_code.txt, lien_demo.txt)
+5. Mets à jour README.md
+6. Commit + push sur stj_branch
+   Message : "feat: functional flows + livrables hackathon"
+
+---
+
+## Contraintes importantes
+* Ne touche PAS au design de index.html, il est parfait
+* Tout le JS peut être dans app.html en <script> inline si nécessaire
+* Le résultat doit être démontrable LIVE devant un jury sans bug visible
+* Pas de framework complexe requis — du JS vanilla propre suffit
+* L'app doit s'afficher correctement sur mobile (elle l'est déjà, maintiens ça)

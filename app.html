@@ -109,11 +109,11 @@
           </div>
         </div>
 
-        <button class="btn-primary-full" onclick="goScreen('d-transfer')">
+        <button class="btn-primary-full" onclick="goScreen('d-otp')">
           Commencer un transfert <i data-lucide="arrow-right"></i>
         </button>
 
-        <button class="btn-outline-full" onclick="goScreen('d-transfer')">
+        <button class="btn-outline-full" onclick="goScreen('d-otp')">
           Voir la comparaison des frais
         </button>
 
@@ -143,6 +143,66 @@
       </div>
     </div>
 
+    <!-- D-OTP Screen (Send OTP) -->
+    <div class="screen" id="d-otp">
+      <div class="screen-scroll screen-centered">
+        <div class="screen-topbar">
+          <button class="back-btn" onclick="goScreen('d-home')"><i data-lucide="arrow-left"></i></button>
+          <div class="topbar-center"><strong>Verification</strong></div>
+          <div style="width:40px"></div>
+        </div>
+        <div class="receive-icon"><i data-lucide="smartphone"></i></div>
+        <h3 style="margin:16px 0 8px;font-size:1.2rem;color:#0F172A;text-align:center;">Verification par OTP</h3>
+        <p style="color:#6B7280;font-size:.9rem;text-align:center;margin-bottom:24px;">Entrez votre numero pour recevoir un code de verification</p>
+        
+        <form id="otpForm" class="card" style="padding:20px; width: 100%;">
+          <label style="font-size:.75rem;font-weight:600;color:#9CA3AF;text-transform:uppercase;display:block;margin-bottom:8px;">Numero de telephone</label>
+          <input type="tel" id="otpPhone" class="tf-input" placeholder="+33 6 12 34 56 78" style="width:100%;font-size:1rem;padding:12px;border:1px solid #E5E7EB;border-radius:8px;margin-bottom:16px;"/>
+          
+          <button type="submit" id="sendOtpBtn" class="btn-primary-full">
+            Envoyer le code <i data-lucide="send"></i>
+          </button>
+        </form>
+        
+        <p style="color:#9CA3AF;font-size:.8rem;text-align:center;margin-top:16px;">
+          Code demo: 123456
+        </p>
+      </div>
+    </div>
+    
+    <!-- D-Verify OTP Screen -->
+    <div class="screen" id="d-verify">
+      <div class="screen-scroll screen-centered">
+        <div class="screen-topbar">
+          <button class="back-btn" onclick="goScreen('d-otp')"><i data-lucide="arrow-left"></i></button>
+          <div class="topbar-center"><strong>Verifier le code</strong></div>
+          <div style="width:40px"></div>
+        </div>
+        <div class="receive-icon"><i data-lucide="shield-check"></i></div>
+        <h3 style="margin:16px 0 8px;font-size:1.2rem;color:#0F172A;text-align:center;">Entrez le code OTP</h3>
+        <p style="color:#6B7280;font-size:.9rem;text-align:center;margin-bottom:24px;">Le code a ete envoye a votre telephone</p>
+        
+        <form id="verifyForm" class="card" style="padding:20px; width: 100%;">
+          <div class="otp-inputs" style="display:flex;gap:8px;justify-content:center;margin-bottom:20px;">
+            <input type="text" maxlength="1" class="otp-input" style="width:44px;height:52px;font-size:1.5rem;text-align:center;border:2px solid #E5E7EB;border-radius:8px;padding:0;"/>
+            <input type="text" maxlength="1" class="otp-input" style="width:44px;height:52px;font-size:1.5rem;text-align:center;border:2px solid #E5E7EB;border-radius:8px;padding:0;"/>
+            <input type="text" maxlength="1" class="otp-input" style="width:44px;height:52px;font-size:1.5rem;text-align:center;border:2px solid #E5E7EB;border-radius:8px;padding:0;"/>
+            <input type="text" maxlength="1" class="otp-input" style="width:44px;height:52px;font-size:1.5rem;text-align:center;border:2px solid #E5E7EB;border-radius:8px;padding:0;"/>
+            <input type="text" maxlength="1" class="otp-input" style="width:44px;height:52px;font-size:1.5rem;text-align:center;border:2px solid #E5E7EB;border-radius:8px;padding:0;"/>
+            <input type="text" maxlength="1" class="otp-input" style="width:44px;height:52px;font-size:1.5rem;text-align:center;border:2px solid #E5E7EB;border-radius:8px;padding:0;"/>
+          </div>
+          
+          <button type="submit" id="verifyOtpBtn" class="btn-primary-full">
+            Verifier <i data-lucide="check"></i>
+          </button>
+        </form>
+        
+        <p style="color:#9CA3AF;font-size:.8rem;text-align:center;margin-top:16px;">
+          Code demo: 123456
+        </p>
+      </div>
+    </div>
+
     <!-- D-Transfer (New) -->
     <div class="screen" id="d-transfer">
       <div class="screen-scroll">
@@ -157,12 +217,22 @@
 
         <div class="transfer-form">
           <div class="tf-row">
+            <label>Destinataire (Nom complet)</label>
+            <input type="text" id="tfRecipient" class="tf-input" placeholder="Ex: Maman" style="width:100%; margin-bottom:16px;"/>
+            
+            <label>Numero du destinataire</label>
+            <input type="tel" id="tfRecipientPhone" class="tf-input" placeholder="+229 97 00 00 00" style="width:100%; margin-bottom:16px;"/>
+
             <label>Vous envoyez</label>
             <div class="tf-input-wrap">
               <input type="number" id="tfAmount" value="100" class="tf-input"/>
               <div class="currency-pill tf-pill">
-                <div class="cur-circle cur-circle-gray">E</div>
-                <span>EUR</span>
+                <select id="tfCurrency" class="cur-select" style="width:45px;">
+                  <option value="EUR" selected>EUR</option>
+                  <option value="USD">USD</option>
+                  <option value="GBP">GBP</option>
+                  <option value="CAD">CAD</option>
+                </select>
                 <i data-lucide="chevron-down" class="cur-arrow"></i>
               </div>
             </div>
@@ -171,7 +241,7 @@
           <div class="rate-badge">
             <div class="rate-icon"><i data-lucide="zap"></i></div>
             <div>
-              <strong>1 EUR = 655,957 XOF</strong>
+              <strong id="tfRateDisplay">1 EUR = 655,957 XOF</strong>
               <span>Taux du marche en temps reel</span>
             </div>
           </div>
@@ -204,7 +274,7 @@
           <button class="back-btn" onclick="goScreen('d-transfer')"><i data-lucide="arrow-left"></i></button>
           <div class="topbar-center">
             <strong>Nouveau transfert</strong>
-            <span class="topbar-sub">Etape 1 sur 2</span>
+            <span class="topbar-sub">Etape 2 sur 2</span>
           </div>
           <button class="cancel-btn" onclick="goScreen('d-home')">Annuler</button>
         </div>
@@ -212,7 +282,7 @@
         <div class="rate-badge" style="margin-top:16px;">
           <div class="rate-icon"><i data-lucide="zap"></i></div>
           <div>
-            <strong>1 EUR = 655,957 XOF</strong>
+            <strong id="sumRateDisplay">1 EUR = 655,957 XOF</strong>
             <span>Taux du marche en temps reel</span>
           </div>
         </div>
@@ -223,7 +293,7 @@
             <span class="arrive-badge"><i data-lucide="clock"></i> Arrive en 30 min</span>
           </div>
           <div class="summary-recv-amount">
-            <span class="big-amount">66 252</span>
+            <span class="big-amount" id="sumRecvAmount">66 252</span>
             <div class="currency-pill tf-pill">
               <div class="cur-circle cur-circle-green">F</div>
               <span>XOF</span>
@@ -233,9 +303,9 @@
 
         <div class="card fee-summary-card">
           <h4>Resume des frais</h4>
-          <div class="fee-row"><span>Montant envoye</span><strong>101 EUR</strong></div>
-          <div class="fee-row"><span>Frais de transfert</span><strong class="green-text">Gratuit</strong></div>
-          <div class="fee-row fee-total"><span>Total</span><strong>101 EUR</strong></div>
+          <div class="fee-row"><span>Montant envoye</span><strong id="sumSendAmount">101 EUR</strong></div>
+          <div class="fee-row"><span>Frais de transfert (0.8%)</span><strong id="sumFeeAmount" class="green-text">0.80 EUR</strong></div>
+          <div class="fee-row fee-total"><span>Total a payer</span><strong id="sumTotalAmount">101.80 EUR</strong></div>
         </div>
 
         <div class="security-banner">
@@ -247,10 +317,12 @@
           <div class="sec-icon-r"><i data-lucide="fingerprint"></i></div>
         </div>
 
-        <button class="btn-primary-full" onclick="goScreen('d-sent')" style="margin-top:16px;">
-          <div class="avatar avatar-orange-xs" style="margin-right:8px;">N</div>
-          Continuer <i data-lucide="arrow-right"></i>
-        </button>
+        <form id="summaryForm">
+          <button type="submit" id="confirmTransferBtn" class="btn-primary-full" style="margin-top:16px;">
+            <div class="avatar avatar-orange-xs" style="margin-right:8px;">N</div>
+            Confirmer et envoyer <i data-lucide="check"></i>
+          </button>
+        </form>
       </div>
     </div>
 
@@ -263,18 +335,18 @@
           </div>
         </div>
         <h2 class="sent-title">Transfert envoye</h2>
-        <p class="sent-sub">Maman va recevoir les fonds dans quelques minutes</p>
+        <p class="sent-sub"><span id="confRecipient">Maman</span> va recevoir les fonds dans quelques minutes</p>
 
         <div class="card sent-details-card">
           <div class="sent-amount-row">
             <span class="sent-label">Montant envoye</span>
-            <div class="sent-big-amount">65 596 <span class="sent-cur">XOF</span></div>
-            <span class="sent-equiv">(100 EUR)</span>
+            <div class="sent-big-amount" id="confAmount">65 596 <span class="sent-cur">XOF</span></div>
+            <span class="sent-equiv" id="confAmountUsd">(100 EUR)</span>
           </div>
-          <div class="sent-detail"><span>De</span><strong>Kofi M.</strong></div>
-          <div class="sent-detail"><span>A</span><strong>Maman</strong></div>
+          <div class="sent-detail"><span>De</span><strong id="confSender">Kofi M.</strong></div>
+          <div class="sent-detail"><span>A</span><strong id="confRecipientName">Maman</strong></div>
           <div class="sent-detail"><span>Statut</span><span class="status-badge"><span class="status-dot"></span> En cours de livraison</span></div>
-          <div class="sent-detail"><span>ID Transaction</span><span class="tx-id">DC-2026-0415-7X9K <i data-lucide="copy" class="copy-icon"></i></span></div>
+          <div class="sent-detail"><span>ID Transaction</span><span class="tx-id" id="confTxId">DC-2026-0415-7X9K <i data-lucide="copy" class="copy-icon"></i></span></div>
         </div>
 
         <div class="arrive-info">
@@ -348,65 +420,6 @@
         </div>
       </div>
     </div>
-<!-- D-OTP Screen (Send OTP) -->
-    <div class="screen" id="d-otp">
-      <div class="screen-scroll screen-centered">
-        <div class="screen-topbar">
-          <button class="back-btn" onclick="goScreen('d-transfer')"><i data-lucide="arrow-left"></i></button>
-          <div class="topbar-center"><strong>Verification</strong></div>
-          <div style="width:40px"></div>
-        </div>
-        <div class="receive-icon"><i data-lucide="smartphone"></i></div>
-        <h3 style="margin:16px 0 8px;font-size:1.2rem;color:#0F172A;text-align:center;">Verification par OTP</h3>
-        <p style="color:#6B7280;font-size:.9rem;text-align:center;margin-bottom:24px;">Entrez votre numero pour recevoir un code de verification</p>
-        
-        <form id="otpForm" class="card" style="padding:20px;">
-          <label style="font-size:.75rem;font-weight:600;color:#9CA3AF;text-transform:uppercase;display:block;margin-bottom:8px;">Numero de telephone</label>
-          <input type="tel" id="otpPhone" class="tf-input" placeholder="+33 6 12 34 56 78" style="width:100%;font-size:1rem;padding:12px;border:1px solid #E5E7EB;border-radius:8px;margin-bottom:16px;"/>
-          
-          <button type="submit" id="sendOtpBtn" class="btn-primary-full">
-            Envoyer le code <i data-lucide="send"></i>
-          </button>
-        </form>
-        
-        <p style="color:#9CA3AF;font-size:.8rem;text-align:center;margin-top:16px;">
-          Code demo: 123456
-        </p>
-      </div>
-    </div>
-    
-    <!-- D-Verify OTP Screen -->
-    <div class="screen" id="d-verify">
-      <div class="screen-scroll screen-centered">
-        <div class="screen-topbar">
-          <button class="back-btn" onclick="goScreen('d-otp')"><i data-lucide="arrow-left"></i></button>
-          <div class="topbar-center"><strong>Verifier le code</strong></div>
-          <div style="width:40px"></div>
-        </div>
-        <div class="receive-icon"><i data-lucide="shield-check"></i></div>
-        <h3 style="margin:16px 0 8px;font-size:1.2rem;color:#0F172A;text-align:center;">Entrez le code OTP</h3>
-        <p style="color:#6B7280;font-size:.9rem;text-align:center;margin-bottom:24px;">Le code a ete envoye a votre telephone</p>
-        
-        <form id="verifyForm" class="card" style="padding:20px;">
-          <div class="otp-inputs" style="display:flex;gap:8px;justify-content:center;margin-bottom:20px;">
-            <input type="text" maxlength="1" class="otp-input" style="width:44px;height:52px;font-size:1.5rem;text-align:center;border:2px solid #E5E7EB;border-radius:8px;padding:0;"/>
-            <input type="text" maxlength="1" class="otp-input" style="width:44px;height:52px;font-size:1.5rem;text-align:center;border:2px solid #E5E7EB;border-radius:8px;padding:0;"/>
-            <input type="text" maxlength="1" class="otp-input" style="width:44px;height:52px;font-size:1.5rem;text-align:center;border:2px solid #E5E7EB;border-radius:8px;padding:0;"/>
-            <input type="text" maxlength="1" class="otp-input" style="width:44px;height:52px;font-size:1.5rem;text-align:center;border:2px solid #E5E7EB;border-radius:8px;padding:0;"/>
-            <input type="text" maxlength="1" class="otp-input" style="width:44px;height:52px;font-size:1.5rem;text-align:center;border:2px solid #E5E7EB;border-radius:8px;padding:0;"/>
-            <input type="text" maxlength="1" class="otp-input" style="width:44px;height:52px;font-size:1.5rem;text-align:center;border:2px solid #E5E7EB;border-radius:8px;padding:0;"/>
-          </div>
-          
-          <button type="submit" id="verifyOtpBtn" class="btn-primary-full">
-            Verifier <i data-lucide="check"></i>
-          </button>
-        </form>
-        
-        <p style="color:#9CA3AF;font-size:.8rem;text-align:center;margin-top:16px;">
-          Code demo: 123456
-        </p>
-      </div>
-    </div>
 
   </div>
 
@@ -442,7 +455,7 @@
         </div>
 
         <div class="b-actions">
-          <button class="b-action" onclick="goScreen('b-receive')">
+          <button class="b-action" onclick="goScreen('b-search')">
             <div class="b-action-icon"><i data-lucide="download"></i></div>
             <span>Recevoir</span>
           </button>
@@ -478,7 +491,7 @@
             <span class="tx-amount tx-negative">- 15 000 XOF</span>
           </div>
           <div class="tx-item">
-            <div class="avatar avatar-green-sm">KM</div>
+            <div class="avatar avatar-orange-sm">KM</div>
             <div class="tx-info"><strong>Kofi (Diaspora)</strong><span>il y a 3 jours</span></div>
             <span class="tx-amount tx-positive">+ 65 596 XOF</span>
           </div>
@@ -486,21 +499,30 @@
       </div>
     </div>
 
-    <!-- B-Receive -->
-    <div class="screen" id="b-receive">
-      <div class="screen-scroll screen-centered">
+    <!-- B-Search -->
+    <div id="b-search" class="screen">
+      <div class="screen-scroll">
         <div class="screen-topbar">
           <button class="back-btn" onclick="goScreen('b-home')"><i data-lucide="arrow-left"></i></button>
-          <div class="topbar-center"><strong>Recevoir</strong></div>
+          <div class="topbar-center"><strong>Rechercher un transfert</strong></div>
           <div style="width:40px"></div>
         </div>
-        <div class="receive-icon"><i data-lucide="download"></i></div>
-        <h3 style="margin:16px 0 8px;font-size:1.2rem;color:#0F172A;">En attente de reception</h3>
-        <p style="color:#6B7280;font-size:.9rem;text-align:center;">Partagez votre code pour recevoir un transfert instantane.</p>
-        <div class="qr-placeholder"><i data-lucide="qr-code"></i><span>Votre QR Code</span></div>
-        <div class="card" style="margin-top:16px;padding:16px;">
-          <div class="sent-detail"><span>Votre ID</span><strong>KF-BENIN-2026</strong></div>
-          <div class="sent-detail"><span>Mobile Money</span><strong>+229 97 XX XX XX</strong></div>
+        
+        <form id="searchForm" class="card" style="padding:20px; margin-top:16px;">
+          <label style="font-size:.75rem;font-weight:600;color:#9CA3AF;text-transform:uppercase;display:block;margin-bottom:8px;">Numero de telephone</label>
+          <input type="tel" id="searchPhone" class="tf-input" placeholder="+229 97 00 00 00" style="width:100%;font-size:1rem;padding:12px;border:1px solid #E5E7EB;border-radius:8px;margin-bottom:16px;"/>
+          <button type="submit" id="searchBtn" class="btn-green-full">Rechercher <i data-lucide="search"></i></button>
+        </form>
+
+        <div id="searchResults" class="hidden" style="margin-top:20px;">
+          <div class="card" style="padding:20px;">
+            <div class="sent-detail"><span>Envoyeur</span><strong id="resultSender">Kofi Mensah</strong></div>
+            <div class="sent-detail"><span>Montant</span><strong id="resultAmount">65 596 XOF</strong></div>
+            <div class="sent-detail"><span>Statut</span><span id="resultStatusBadge" class="status-badge status-orange"><span class="status-dot"></span> <span id="resultStatus">En attente</span></span></div>
+            
+            <button class="btn-green-full" onclick="goScreen('b-withdraw')" style="margin-top:20px;">Retirer ces fonds</button>
+            <button class="btn-outline-full" onclick="resetSearch()" style="margin-top:10px; border-color: #E5E7EB; color: #6B7280;">Nouvelle recherche</button>
+          </div>
         </div>
       </div>
     </div>
@@ -538,15 +560,27 @@
           </div>
           <p style="font-size:.82rem;color:#9CA3AF;">Solde disponible : 345 500 XOF</p>
         </div>
-        <form id="withdrawForm">
-        <div class="withdraw-methods">
-          <div class="wm-item"><div class="wm-icon wm-mtn">MTN</div><div><strong>MTN Mobile Money</strong><span>+229 97 XX XX XX</span></div><i data-lucide="chevron-right" class="menu-arrow"></i></div>
-          <div class="wm-item"><div class="wm-icon wm-moov">M</div><div><strong>Moov Money</strong><span>+229 95 XX XX XX</span></div><i data-lucide="chevron-right" class="menu-arrow"></i></div>
+        
+        <div class="withdraw-methods" style="margin-top:20px;">
+          <div class="wm-item selected" onclick="selectMethod(this)">
+            <div class="wm-icon wm-mtn">MTN</div>
+            <div><strong>MTN Mobile Money</strong><span>+229 97 00 00 00</span></div>
+            <i data-lucide="check-circle" class="menu-arrow" style="color: var(--green);"></i>
+          </div>
+          <div class="wm-item" onclick="selectMethod(this)">
+            <div class="wm-icon wm-moov">M</div>
+            <div><strong>Moov Money</strong><span>+229 95 00 00 00</span></div>
+            <i data-lucide="chevron-right" class="menu-arrow"></i>
+          </div>
         </div>
-        <button type="submit" id="withdrawBtn" class="btn-green-full" style="margin-top:20px;">Retirer maintenant</button>
+
+        <form id="withdrawForm">
+          <button type="submit" id="withdrawBtn" class="btn-green-full" style="margin-top:20px;">Retirer maintenant</button>
         </form>
       </div>
-<!-- B-Withdraw-Success -->
+    </div>
+
+    <!-- B-Withdraw-Success -->
     <div class="screen" id="b-withdraw-success">
       <div class="screen-scroll screen-centered">
         <div class="screen-topbar">
@@ -573,11 +607,10 @@
          Vous allez recevoir un SMS de confirmation sous quelques minutes.
         </p>
         
-        <button class="btn-primary-full" onclick="goScreen('b-home')" style="margin-top:24px;">
+        <button class="btn-primary-full" onclick="goScreen('b-home')" style="margin-top:24px; background: var(--green);">
           Retour a l'accueil <i data-lucide="arrow-right"></i>
         </button>
       </div>
-    </div>
     </div>
 
     <!-- B-Profile -->
@@ -617,7 +650,7 @@
   <!-- Bottom Nav Benin -->
   <nav class="bottom-nav bottom-nav-green" id="bNav">
     <button class="bnav-item active" onclick="goScreen('b-home')"><i data-lucide="home"></i><span>Accueil</span></button>
-    <button class="bnav-item" onclick="goScreen('b-receive')"><i data-lucide="download"></i><span>Recevoir</span></button>
+    <button class="bnav-item" onclick="goScreen('b-search')"><i data-lucide="download"></i><span>Recevoir</span></button>
     <button class="bnav-item" onclick="goScreen('b-bills')"><i data-lucide="file-text"></i><span>Factures</span></button>
     <button class="bnav-item" onclick="goScreen('b-withdraw')"><i data-lucide="plus-circle"></i><span>Retirer</span></button>
   </nav>
