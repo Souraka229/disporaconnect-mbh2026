@@ -7,6 +7,9 @@
 const API_BASE = '';  // Empty for mock mode - app works offline/demo mode
 const USE_MOCK = true; // Set to false when real backend is available
 
+// Session state
+let sessionPhone = '';
+
 // Exchange rates (fallback values)
 let EXCHANGE_RATES = {
     USD: 592,
@@ -232,7 +235,10 @@ function initApp() {
         btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>...';
         const res = await apiCall('/api/auth/send-otp', { method: 'POST', body: JSON.stringify({ phone }) });
         btn.disabled = false; btn.innerHTML = 'Envoyer le code <i data-lucide="send"></i>';
-        if (res.success) goScreen('d-verify');
+        if (res.success) {
+            sessionPhone = phone; // Store phone for verification
+            goScreen('d-verify');
+        }
         lucide.createIcons();
     });
 
@@ -242,7 +248,7 @@ function initApp() {
         if (otp.length < 6) return showAlert('Code incomplet');
         const btn = document.getElementById('verifyOtpBtn');
         btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>...';
-        const res = await apiCall('/api/auth/verify-otp', { method: 'POST', body: JSON.stringify({ otpCode: otp }) });
+        const res = await apiCall('/api/auth/verify-otp', { method: 'POST', body: JSON.stringify({ phone: sessionPhone, otpCode: otp }) });
         btn.disabled = false; btn.innerHTML = 'Vérifier <i data-lucide="check"></i>';
         if (res.success) goScreen('d-transfer');
         else showAlert('Code erroné (utilisez 123456)');
