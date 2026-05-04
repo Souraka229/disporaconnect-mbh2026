@@ -1,9 +1,54 @@
-# 🌍 DiasporaConnect - MIABE Hackathon 2026
+# DiasporaConnect
 
-Bienvenue sur le dépôt Backend de **DiasporaConnect** ! 
+---
 
-**DiasporaConnect** est une plateforme de transfert de fonds basés sur la blockchain (Polygon), conçue spécifiquement pour la diaspora, permettant d'envoyer de l'argent vers l'Afrique avec des frais quasi nuls (0.1%), de façon quasi instantanée, et en convertissant l'argent reçu directement en Mobile Money (Francs CFA).
+## Description
+DiasporaConnect est une plateforme de transfert de fonds basée sur la blockchain (Polygon), conçue spécifiquement pour la diaspora africaine. Envoyez de l'argent vers le Bénin avec seulement 0.8% de frais, de façon quasi instantanée, et recevez directement en Mobile Money (XOF).
 
+## Problème résolu
+Les frais de transfert traditionnels vers l'Afrique peuvent atteindre 15%, avec des délais de plusieurs jours. DiasporaConnect réduit ces frais à 0.8% et permet une réception en moins de 30 minutes via Mobile Money.
+
+## Solution
+- Blockchain Polygon pour des transactions rapides et sécuriséess
+- Conversion automatique EUR/USDC/XOF
+- Retrait sur MTN Mobile Money ou Moov Money
+- Frais quasi nuls (0.8% seulement)
+
+## Pile technologique
+- **Frontend** : HTML5, CSS3, JavaScript (Vanilla)
+- **Backend** : Node.js, Express, Prisma
+- **Blockchain** : Polygon (Amoy Testnet), Smart Contracts Solidity
+- **Base de données** : SQLite (dev) / PostgreSQL (prod)
+- **Mobile Money** : API MTN/Moov (simulation)
+
+## Comment lancer en local
+```bash
+cd backend
+npm install
+npx prisma db push
+npm start
+# API disponible sur http://localhost:3000
+
+# Pour le frontend, serviez les fichiers HTML
+# ou utilisez un serveur statique local
+```
+
+## Variables d'environnement
+- `DATABASE_URL` : URL de la base de données
+- `ENCRYPTION_KEY` : Clé de chiffrement AES-256 (64 hex)
+- `JWT_SECRET` : Secret pour les tokens JWT
+- `RELAYER_PRIVATE_KEY` : Clé wallet Ethereum pour les transactions blockchain
+
+## Équipe
+- MIABE Hackathon 2026 - Benin
+
+## Prototype de lien
+- **Prototype** : https://diaspora-connect-ayaxntwu.devinapps.com/
+- **Code** : https://github.com/Souraka229/disporaconnect-mbh2026.git
+
+---
+
+## 🌍 MIABE Hackathon 2026
 ---
 
 ## 🏗️ Architecture du Projet
