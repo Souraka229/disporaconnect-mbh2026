@@ -206,24 +206,49 @@
       </div>
     </div>
 
-    <!-- D-OTP Screen (Send OTP) -->
+    <!-- D-OTP Screen (Send OTP / Login / Register) -->
     <div class="screen" id="d-otp">
       <div class="screen-scroll screen-centered">
         <div class="screen-topbar">
           <button class="back-btn" onclick="goScreen('d-home')"><i data-lucide="arrow-left"></i></button>
-          <div class="topbar-center"><strong>Verification</strong></div>
+          <div class="topbar-center"><strong>Identification</strong></div>
           <div style="width:40px"></div>
         </div>
-        <div class="receive-icon"><i data-lucide="smartphone"></i></div>
-        <h3 style="margin:16px 0 8px;font-size:1.2rem;color:#0F172A;text-align:center;">Verification par OTP</h3>
-        <p style="color:#6B7280;font-size:.9rem;text-align:center;margin-bottom:24px;">Entrez votre numero pour recevoir un code de verification</p>
         
+        <!-- Auth Tabs -->
+        <div class="login-tabs" style="display:flex;gap:8px;margin-bottom:16px;">
+          <button class="login-tab active" id="tab-login" onclick="showAuthTab('login')">Se connecter</button>
+          <button class="login-tab" id="tab-register" onclick="showAuthTab('register')">S'inscrire</button>
+        </div>
+
+        <!-- Login Form -->
         <form id="otpForm" class="card" style="padding:20px; width: 100%;">
-          <label style="font-size:.75rem;font-weight:600;color:#9CA3AF;text-transform:uppercase;display:block;margin-bottom:8px;">Numero de telephone</label>
+          <label style="font-size:.75rem;font-weight:600;color:#9CA3AF;text-transform:uppercase;display:block;margin-bottom:8px;">Numéro de téléphone</label>
           <input type="tel" id="otpPhone" class="tf-input" placeholder="+33 6 12 34 56 78" style="width:100%;font-size:1rem;padding:12px;border:1px solid #E5E7EB;border-radius:8px;margin-bottom:16px;"/>
           
           <button type="submit" id="sendOtpBtn" class="btn-primary-full">
-            Envoyer le code <i data-lucide="send"></i>
+            Recevoir le code <i data-lucide="smartphone"></i>
+          </button>
+        </form>
+
+        <!-- Register Form -->
+        <form id="registerForm" class="card hidden" style="padding:20px; width: 100%;">
+          <label style="font-size:.75rem;font-weight:600;color:#9CA3AF;text-transform:uppercase;display:block;margin-bottom:8px;">Nom complet</label>
+          <input type="text" id="regName" class="tf-input" placeholder="Prénom Nom" style="width:100%;font-size:1rem;padding:12px;border:1px solid #E5E7EB;border-radius:8px;margin-bottom:12px;"/>
+          
+          <label style="font-size:.75rem;font-weight:600;color:#9CA3AF;text-transform:uppercase;display:block;margin-bottom:8px;">Numéro de téléphone</label>
+          <input type="tel" id="regPhone" class="tf-input" placeholder="+33 6 12 34 56 78" style="width:100%;font-size:1rem;padding:12px;border:1px solid #E5E7EB;border-radius:8px;margin-bottom:12px;"/>
+          
+          <label style="font-size:.75rem;font-weight:600;color:#9CA3AF;text-transform:uppercase;display:block;margin-bottom:8px;">Pays</label>
+          <select id="regCountry" class="tf-input" style="width:100%;font-size:1rem;padding:12px;border:1px solid #E5E7EB;border-radius:8px;margin-bottom:16px;">
+            <option value="FR">France</option>
+            <option value="BE">Belgique</option>
+            <option value="CH">Suisse</option>
+            <option value="CA">Canada</option>
+          </select>
+          
+          <button type="submit" id="registerBtn" class="btn-primary-full">
+            S'inscrire et recevoir le code <i data-lucide="user-plus"></i>
           </button>
         </form>
         

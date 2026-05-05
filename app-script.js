@@ -481,3 +481,30 @@ bInputs.forEach((input, i) => {
         if (e.key === 'Backspace' && !input.value && i > 0) bInputs[i-1].focus();
     });
 });
+
+// Auth Tabs
+window.showAuthTab = function(tab) {
+    document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+    document.getElementById('tab-register').classList.toggle('active', tab === 'register');
+    document.getElementById('otpForm').classList.toggle('hidden', tab === 'register');
+    document.getElementById('registerForm').classList.toggle('hidden', tab === 'login');
+};
+
+// Register Form Handler
+document.getElementById('registerForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('regName').value;
+    const phone = document.getElementById('regPhone').value;
+    const country = document.getElementById('regCountry').value;
+    if (!name || !phone) return showAlert('Remplissez tous les champs');
+    const btn = document.getElementById('registerBtn');
+    btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>...';
+    const res = await apiCall('/api/auth/register', { method: 'POST', body: JSON.stringify({ name, phone, country }) });
+    btn.disabled = false; btn.innerHTML = 'S\'inscrire et recevoir le code <i data-lucide="user-plus"></i>';
+    if (res.success) {
+        sessionPhone = phone;
+        sessionName = name;
+        goScreen('d-verify');
+    }
+    lucide.createIcons();
+});
